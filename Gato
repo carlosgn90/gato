@@ -1,0 +1,389 @@
+#!/usr/bin/python
+import tkinter as tk
+from tkinter import*
+import tkinter
+import os
+import time
+global matriz
+global suTurno
+import random
+import tkinter.messagebox
+from random import shuffle
+suTurno = True
+matriz = [[0,0,0],[0,0,0],[0,0,0]]
+ventana= Tk()
+ventana.title("Gato")
+ventana.geometry("200x250+500+200")
+ventana.minsize(width=250, height=250)
+ventana.maxsize(width=250, height=250)
+canvas = Canvas(ventana,width=250,height=250)
+canvas.pack()
+linea = canvas.create_line(10, 150, 240, 150,width=4)
+linea = canvas.create_line(10, 75, 240, 75,width=4) 
+linea = canvas.create_line(80, 10, 80, 230,width=4)   
+linea = canvas.create_line(160, 10, 160, 230,width=4) 
+    
+def JuegoPC():
+    def gano():
+        global matriz
+        x = 0
+        while x < 3:
+            if matriz[x][0] == 2 and matriz[x][1] == 2 and matriz[x][2] == 2:
+                tkinter.messagebox.showinfo(title="Fin Juego",message="Fin del Juego, La PC Gana")
+                os._exit(1)
+            x += 1
+        x = 0
+        while x < 3:
+            if matriz[0][x] == 2 and matriz[1][x] == 2 and matriz[2][x] == 2:
+                tkinter.messagebox.showinfo(title="Fin Juego",message="Fin del Juego, La PC Gana")
+                os._exit(1)
+            x += 1
+        if (matriz[0][0] == 2 and matriz[1][1] == 2 and matriz[2][2] == 2) or (matriz[0][1] == 2 and matriz[1][1] == 2 and matriz[2][0] == 2):
+            tkinter.messagebox.showinfo(title="Fin Juego",message="Fin del Juego, La PC Gana")
+            os._exit(1)
+        
+        return
+    
+    global suTurno
+    global matriz
+    global inicio
+################################################################################
+    if (matriz[0][1] == 2 and matriz[0][2] == 2) or (matriz[1][0] == 2 and matriz[2][0] == 2) or (matriz[1][1] == 2 and matriz[2][2] == 2):
+        if matriz[0][0] == 0:
+            matriz[0][0] = 2
+            Bola=canvas.create_oval(60,60,30,30, width=4)
+            suTurno = True
+            gano()
+            return
+    if (matriz[0][0] == 2 and matriz[0][2] == 2) or (matriz[1][1] == 2 and matriz[2][1] == 2):
+        if matriz[0][1] == 0:
+            matriz[0][1] = 2
+            Bola=canvas.create_oval(140,60,110,30, width=4)
+            suTurno = True
+            gano()
+            return
+    if (matriz[0][0] == 2 and matriz[0][1] == 2) or (matriz[1][1] == 2 and matriz[2][0] == 2) or (matriz[1][2] == 2 and matriz[2][2] == 2):
+        if matriz[0][2] == 0:
+            matriz[0][2] = 2
+            Bola=canvas.create_oval(220,60,190,30, width=4)
+            suTurno = True
+            gano()
+            return
+
+
+            
+    if (matriz[0][0] == 2 and matriz[2][0] == 2) or (matriz[1][1] == 2 and matriz[1][2] == 2):
+        if matriz[1][0] == 0:
+            matriz[1][0] = 2
+            Bola=canvas.create_oval(60,140,30,110, width=4)
+            suTurno = True
+            gano()
+            return
+    if (matriz[0][0] == 2 and matriz[2][2] == 2) or (matriz[0][2] == 2 and matriz[2][0] == 2) or (matriz[1][0] == 2 and matriz[1][2] == 2) or (matriz[0][1] == 2 and matriz[2][1] == 2):
+        if matriz[1][1] == 0:
+            matriz[1][1] = 2
+            Bola=canvas.create_oval(140,140,110,110, width=4)
+            suTurno = True
+            gano()
+            return
+    if (matriz[0][2] == 2 and matriz[2][2] == 2) or (matriz[1][0] == 2 and matriz[1][1] == 2):
+        if matriz[1][2] == 0:
+            matriz[1][2] = 2
+            Bola=canvas.create_oval(220,140,190,110, width=4)
+            suTurno = True
+            gano()
+            return
+
+            
+    if (matriz[2][1] == 2 and matriz[2][2] == 2) or (matriz[0][0] == 2 and matriz[1][0] == 2) or (matriz[0][2] == 2 and matriz[1][1] == 2):
+        if matriz[2][0] == 0:
+            matriz[2][0] = 2
+            Bola=canvas.create_oval(60,220,30,190, width=4)
+            suTurno = True
+            gano()
+            return
+    if (matriz[2][0] == 2 and matriz[2][2] == 2) or (matriz[0][1] == 2 and matriz[1][1] == 2):
+        if matriz[2][1] == 0:
+            matriz[2][1] = 2
+            Bola=canvas.create_oval(140,220,110,190, width=4)
+            suTurno = True
+            gano()
+            return
+    if (matriz[2][0] == 2 and matriz[2][1] == 2) or (matriz[0][2] == 2 and matriz[1][2] == 2) or (matriz[0][0] == 2 and matriz[1][1] == 2):
+        if matriz[2][2] == 0:
+            matriz[2][2] = 2
+            Bola=canvas.create_oval(220,220,190,190, width=4)
+            suTurno = True
+            gano()
+            return
+################################################################################    
+    if (matriz[0][1] ==1 and matriz[0][2] == 1) or (matriz[1][0] ==1 and matriz[2][0] == 1) or (matriz[1][1] ==1 and matriz[2][2] == 1):
+        if matriz[0][0] == 0:
+            matriz[0][0] = 2
+            Bola=canvas.create_oval(60,60,30,30, width=4)
+            suTurno = True
+            return
+    if (matriz[0][0] ==1 and matriz[0][2] == 1) or (matriz[1][1] ==1 and matriz[2][1] == 1):
+        if matriz[0][1] == 0:
+            matriz[0][1] = 2
+            Bola=canvas.create_oval(140,60,110,30, width=4)
+            suTurno = True
+            return
+    if (matriz[0][0] ==1 and matriz[0][1] == 1) or (matriz[1][1] ==1 and matriz[2][0] == 1) or (matriz[1][2] ==1 and matriz[2][2] == 1):
+        if matriz[0][2] == 0:
+            matriz[0][2] = 2
+            Bola=canvas.create_oval(220,60,190,30, width=4)
+            suTurno = True
+            return
+
+
+            
+    if (matriz[0][0] ==1 and matriz[2][0] == 1) or (matriz[1][1] ==1 and matriz[1][2] == 1):
+        if matriz[1][0] == 0:
+            matriz[1][0] = 2
+            Bola=canvas.create_oval(60,140,30,110, width=4)
+            suTurno = True
+            return
+    if (matriz[0][0] ==1 and matriz[2][2] == 1) or (matriz[0][2] ==1 and matriz[2][0] == 1) or (matriz[1][0] ==1 and matriz[1][2] == 1) or (matriz[0][1] ==1 and matriz[2][1] == 1):
+        if matriz[1][1] == 0:
+            matriz[1][1] = 2
+            Bola=canvas.create_oval(140,140,110,110, width=4)
+            suTurno = True
+            return
+    if (matriz[0][2] ==1 and matriz[2][2] == 1) or (matriz[1][0] ==1 and matriz[1][1] == 1):
+        if matriz[1][2] == 0:
+            matriz[1][2] = 2
+            Bola=canvas.create_oval(220,140,190,110, width=4)
+            suTurno = True
+            return
+
+            
+    if (matriz[2][1] == 1 and matriz[2][2] == 1) or (matriz[0][0] ==1 and matriz[1][0] == 1) or (matriz[0][2] ==1 and matriz[1][1] == 1):
+        if matriz[2][0] == 0:
+            matriz[2][0] = 2
+            Bola=canvas.create_oval(60,220,30,190, width=4)
+            suTurno = True
+            return
+    if (matriz[2][0] == 1 and matriz[2][2] == 1) or (matriz[0][1] ==1 and matriz[1][1] == 1):
+        if matriz[2][1] == 0:
+            matriz[2][1] = 2
+            Bola=canvas.create_oval(140,220,110,190, width=4)
+            suTurno = True
+            return
+    if (matriz[2][0] == 1 and matriz[2][1] == 1) or (matriz[0][2] ==1 and matriz[1][2] == 1) or (matriz[0][0] ==1 and matriz[1][1] == 1):
+        if matriz[2][2] == 0:
+            matriz[2][2] = 2
+            Bola=canvas.create_oval(220,220,190,190, width=4)
+            suTurno = True
+            return
+
+    if suTurno == False:
+        if matriz[1][1] == 0 and inicio > 50:
+            matriz[1][1] = 2
+            salir = True
+            Bola=canvas.create_oval(140,140,110,110, width=4)
+            suTurno = True
+            return
+        else:
+            if (matriz[0][0] == 1 and matriz[2][2] == 1) or (matriz[0][2] == 1 and matriz[2][0] == 1):
+                x = random.randrange(0,51)
+                if x <=25:
+                    if matriz[1][0] == 0:
+                        matriz[1][0] = 2
+                        Bola=canvas.create_oval(60,140,30,110, width=4)
+                        suTurno = True
+                        return
+                    else:
+                        if matriz[1][2] == 0:
+                            matriz[1][2] = 2
+                            Bola=canvas.create_oval(220,140,190,110, width=4)
+                            suTurno = True
+                            return
+                else:
+                    if matriz[1][2] == 0:
+                        matriz[1][2] = 2
+                        Bola=canvas.create_oval(220,140,190,110, width=4)
+                        suTurno = True
+                        return       
+            salir = False
+            while salir == False:
+                x = random.randrange(0,3)
+                y = random.randrange(0,3)
+                if matriz[1][1] == 1 and matriz[0][0] == 2 and matriz[2][2] == 0:
+                    x = 2
+                    y = 2
+                if matriz[1][1] == 1 and matriz[2][2] == 2 and matriz[0][0] == 0:
+                    x = 0
+                    y = 0
+                if matriz[1][1] == 1 and matriz[0][2] == 2 and matriz[2][0] == 0:
+                    x = 2
+                    y = 0
+                if matriz[1][1] == 1 and matriz[2][0] == 2 and matriz[0][2] == 0:
+                    x = 0
+                    y = 2
+                    
+                if matriz[0][0] and matriz[0][2] and matriz[2][0] and matriz[2][2] != 0:
+                    salir = True      
+                if x == 0 and y == 0:
+                    if matriz[x][y]==0:
+                        matriz[x][y]=2
+                        Bola=canvas.create_oval(60,60,30,30, width=4)
+                        salir=True
+                        suTurno = True
+                        return
+                if x == 0 and y == 2:
+                    if matriz[x][y]==0:
+                        matriz[x][y]=2
+                        Bola=canvas.create_oval(220,60,190,30, width=4)
+                        salir=True
+                        suTurno = True
+                        return
+                if x == 2 and y == 0:
+                    if matriz[x][y]==0:
+                        matriz[x][y]=2
+                        Bola=canvas.create_oval(60,220,30,190, width=4)
+                        salir=True
+                        suTurno = True
+                        return
+                if x == 2 and y == 2:
+                    if matriz[x][y]==0:
+                        matriz[x][y]=2
+                        Bola=canvas.create_oval(220,220,190,190, width=4)
+                        salir=True
+                        suTurno = True
+                        return
+                    
+        suTurno = True
+        return
+    gano = True
+    for i in matriz:
+        for j in i:
+            if j == 0:
+                gano = False
+                
+    if gano == False:
+        suTurno = True
+        return
+    else:
+        tkinter.messagebox.showinfo(title="Gato",message="Fin del Juego, Empate")
+        os._exit(1)
+def click(pos):
+    global suTurno
+    global matriz
+    if 18<=pos.x<=65 and 20<=pos.y<=64 and suTurno == True:
+        if matriz[0][0] == 1 or matriz[0][0] == 2:
+            pass
+        else:
+            matriz[0][0]=1
+            cruz = canvas.create_line(20,20,60,60,width=4)
+            cruz2 = canvas.create_line(60,20,20,60,width=4)
+            suTurno = False
+            JuegoPC()
+
+            
+    elif 80<=pos.x<=146 and 20<=pos.y<=64 and suTurno == True:
+        if matriz[0][1] == 1 or matriz[0][1] == 2:
+            pass
+        else:
+            matriz[0][1]=1
+            cruz = canvas.create_line(100,20,140,60,width=4)
+            cruz2 = canvas.create_line(140,20,100,60,width=4)
+            suTurno = False
+            JuegoPC()
+            
+    elif 173<=pos.x<=220 and 20<=pos.y<=64 and suTurno == True:
+        if matriz[0][2] == 1 or matriz[0][2] == 2:
+            pass
+        else:
+            matriz[0][2]=1
+            cruz = canvas.create_line(180,20,220,60,width=4)
+            cruz2 = canvas.create_line(220,20,180,60,width=4)
+            suTurno = False
+            JuegoPC()
+            
+    elif 18<=pos.x<=65 and 87<=pos.y<=150 and suTurno == True:
+        if matriz[1][0] == 1 or matriz[1][0] == 2:
+            pass
+        else:
+            matriz[1][0] = 1
+            cruz = canvas.create_line(20,100,60,140,width=4)
+            cruz2 = canvas.create_line(60,100,20,140,width=4)
+            suTurno = False
+            JuegoPC()
+
+            
+    elif 80<=pos.x<=146 and 87<=pos.y<=150 and suTurno == True:
+        if matriz[1][1] == 1 or matriz[1][1] == 2:
+            pass
+        else:
+            matriz[1][1]=1
+            cruz = canvas.create_line(100,100,140,140,width=4)
+            cruz2 = canvas.create_line(140,100,100,140,width=4)
+            suTurno = False
+            JuegoPC()
+
+            
+    elif 173<=pos.x<=220 and 87<=pos.y<=150 and suTurno == True:
+
+        if matriz[1][2] == 1 or matriz[1][2] == 2:
+            pass
+        else:
+            matriz[1][2]=1
+            cruz = canvas.create_line(180,100,220,140,width=4)
+            cruz2 = canvas.create_line(220,100,180,140,width=4)
+            suTurno = False
+            JuegoPC()
+
+            
+    elif 18<=pos.x<=65 and 176<=pos.y<=225 and suTurno == True:
+        if matriz[2][0] == 1 or matriz[2][0] == 2:
+            pass
+        else:
+            matriz[2][0]=1
+            cruz = canvas.create_line(20,180,60,220,width=4)
+            cruz2 = canvas.create_line(60,180,20,220,width=4)
+            suTurno = False
+            JuegoPC()
+
+            
+    elif 80<=pos.x<=146 and 176<=pos.y<=225 and suTurno == True:
+        if matriz[2][1] == 1 or matriz[2][1] == 2:
+            pass
+        else:
+            matriz[2][1]=1
+            cruz = canvas.create_line(100,180,140,220,width=4)
+            cruz2 = canvas.create_line(140,180,100,220,width=4)
+            suTurno = False
+            JuegoPC()
+
+            
+    elif 173<=pos.x<=220 and 176<=pos.y<=225 and suTurno == True:
+        if matriz[2][2] == 1 or matriz[2][2] == 2:
+            pass
+        else:
+            matriz[2][2]=1
+            cruz = canvas.create_line(180,180,220,220,width=4)
+            cruz2 = canvas.create_line(220,180,180,220,width=4)
+            suTurno = False
+            JuegoPC()
+    gano = True
+    for i in matriz:
+        for j in i:
+            if j == 0:
+                gano = False
+                
+    if gano == True:
+        tkinter.messagebox.showinfo(title="Gato",message="Fin del Juego, Empate")
+        os._exit(1)
+            
+    #print ("posicion al dar click: ", pos.x, pos.y)  # pos.x y pos.y indicaran la posicion en la que se encuentra el cursor
+global inicio
+inicio = random.randrange(0,101)
+if inicio <= 50:
+    tkinter.messagebox.showinfo(title="Inicio Gato",message="Inicia La PC")
+    suTurno = False
+    JuegoPC()
+else:
+    tkinter.messagebox.showinfo(title="Inicio Gato",message="Inicias Tu")
+ventana.bind("<Button-1>",click)
+ventana.mainloop()
